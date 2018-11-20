@@ -1,0 +1,55 @@
+// Priors and rules file
+// *********************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max
+//all Ns are in number of haploid individuals
+1	N_eAGR	logunif	100 1e5	output
+1	N_wAGR	logunif	100 1e5	output
+1	N_eRHG	logunif	100 1e5	output
+1	N_wRHG	logunif	100 1e5	output
+1	N_EUR$	logunif	100 1e5	output
+
+1	N_OOA$	logunif	100 1e5	output
+1	N_AGR	logunif	100 1e5	output
+1	N_RHG	logunif	100 1e5	output
+1	N_AFR	logunif	100 1e5	output
+1	N_HUM	logunif	100 1e5	output
+
+1	TEXP_HUM	logunif	10	10000	output
+
+0	f_HUM	unif	0	1	hide bounded
+0	f_AGR	unif	0	1	hide bounded
+0	f_RHG	unif	0	1	hide bounded
+0	f_OOA	unif	0	1	hide bounded
+0	f_EXPEUR	unif	0	1	hide bounded
+
+0	MIGR_AR1	logunif	1e-7	1e-2	output 
+0	MIGR_RA1	logunif	1e-7	1e-2	output
+
+0	MIGR_AR2	logunif	1e-7	1e-2	output 
+0	MIGR_RA2	logunif	1e-7	1e-2	output 
+
+0	MIGR_EA1	logunif	1e-7	1e-2	output 
+0	MIGR_AE1	logunif	1e-7	1e-2	output
+
+0	MIGR_EA2	logunif	1e-7	1e-2	output 
+0	MIGR_AE2	logunif	1e-7	1e-2	output 
+
+[RULES]
+
+[COMPLEX PARAMETERS]
+
+1	TDIV_HUM = TEXP_HUM * f_HUM output
+1	TDIV_OOA = TDIV_HUM * f_OOA	 output
+1	TDIV_RHG = TDIV_OOA * f_RHG output
+
+
+1	TEXP_EUR = TDIV_OOA * f_EXPEUR output
+1	TDIV_AGR = TDIV_RHG * f_AGR output
+
+0	RESIZE_AGR = N_AGR/N_wAGR hide
+0	RESIZE_RHG = N_RHG/N_wRHG hide
+0	RESIZE_AFR = N_AFR/N_RHG hide
+0	RESIZE_HUM = N_HUM/N_AFR hide
+0	RESIZE_EUR = N_OOA$/N_EUR$ hide
