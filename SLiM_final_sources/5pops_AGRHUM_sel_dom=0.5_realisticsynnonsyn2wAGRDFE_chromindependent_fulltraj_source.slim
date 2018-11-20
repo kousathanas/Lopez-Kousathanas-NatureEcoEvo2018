@@ -1,0 +1,268 @@
+initialize() {
+initializeMutationRate(1.36e-7);
+
+initializeMutationType("m1", 0.5, "f", 0); //synonymous
+initializeMutationType("m2", 0.5, "g", -0.828,0.140); //nonsynonymous
+
+initializeGenomicElementType("g1", m1,1); //exon
+initializeGenomicElementType("g2", m2,1); //exon
+
+ngenes=1000;
+spacer=50000;
+intronsize=5000;
+nexon=8;
+exonsize=100;
+base=0;
+
+for (gene in 1:ngenes){
+for (exon in 1:nexon){
+l=0;
+while (l<exonsize){
+initializeGenomicElement(g2, base, base + 1);
+initializeGenomicElement(g1, base+2, base + 2);
+
+base=base+3;
+l=l+3;
+}
+base=base+intronsize;
+}
+base=base+spacer;
+}
+
+initializeRecombinationRate(1e-7,base);
+}
+
+1 {
+sim.addSubpop("p1", 1443);
+}
+
+11512 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step0.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step0.output");
+}
+
+11542 {
+p1.setSubpopulationSize(2113);
+}
+
+11542 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step1.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step1.output");
+}
+
+11572 late(){
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step2.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step2.output");
+}
+
+11602 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step3.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step3.output");
+}
+
+11632 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step4.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step4.output");
+}
+
+11662 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step5.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step5.output");
+}
+
+11692 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step6.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step6.output");
+}
+
+//RHG split from rest (DIV1)
+11717 {
+sim.addSubpopSplit("p2", 1754, p1);
+p1.setMigrationRates(c(p2), c(5.79e-4));
+p2.setMigrationRates(c(p1), c(3.48e-4));
+}
+
+11717 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step7.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step7.output");
+
+}
+
+11722 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step8.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step8.output");
+}
+
+11782 late(){
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step9.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step9.output");
+}
+
+11812 late(){
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step10.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step10.output");
+}
+
+11842 late(){
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step11.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step11.output");
+}
+
+11872 late(){
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step12.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step12.output");
+}
+
+//EUR split from rest (DIV2)
+11889 {
+sim.addSubpopSplit("p3", 307, p1);
+p1.setSubpopulationSize(1842);
+
+p1.setMigrationRates(c(p3), c(5.79e-4));
+p3.setMigrationRates(c(p1), c(3.48e-4));
+
+}
+
+11889 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step13.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step13.output");
+}
+
+11902 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step14.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step14.output");
+}
+
+11932 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step15.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step15.output");
+}
+
+11962 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step16.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step16.output");
+}
+
+11992 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step17.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step17.output");
+}
+
+12022 late(){
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step18.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step18.output");
+}
+
+12052 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step19.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step19.output");
+}
+
+12082 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step20.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step20.output");
+}
+
+//EUR expansion
+12108 { 
+p3.setSubpopulationSize(2599); 
+}
+
+12108 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step21.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step21.output");
+}
+
+12112 late(){
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step22.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step22.output");
+}
+
+//RHG split
+12120 {
+sim.addSubpopSplit("p4", 246, p2);
+p2.setSubpopulationSize(457);
+
+p1.setMigrationRates(c(p2), c(6.70e-4));
+p2.setMigrationRates(c(p1), c(1.10e-3));
+}
+
+12120 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step23.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step23.output");
+}
+
+12142 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step24.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step24.output");
+}
+
+//AGR split
+12151 {
+sim.addSubpopSplit("p5", 2546, p1);
+p1.setSubpopulationSize(4157);
+
+//new migration epoch
+//wRHG<->wAGR
+p1.setMigrationRates(c(p2), c(2.12e-3));
+p2.setMigrationRates(c(p1), c(1.93e-2));
+
+//eRHG<->eAGR
+p5.setMigrationRates(c(p4), c(2.12e-3));
+p4.setMigrationRates(c(p5), c(1.93e-2));
+
+//EUR<->eAGR
+p3.setMigrationRates(c(p5), c(1.03e-5));
+p5.setMigrationRates(c(p3), c(1.27e-3));
+}
+
+12151 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step25.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step25.output");
+}
+
+12172 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step26.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step26.output");
+}
+
+12183 late() {
+
+allIndividuals_pop = sim.subpopulations[0].individuals;
+sampledIndividuals = sample(allIndividuals_pop, 100);
+sampledIndividuals.genomes.outputVCF(filePath="TAG_wAGR.vcf");
+
+allIndividuals_pop = sim.subpopulations[1].individuals;
+sampledIndividuals = sample(allIndividuals_pop, 100);
+sampledIndividuals.genomes.outputVCF(filePath="TAG_wRHG.vcf");
+
+allIndividuals_pop = sim.subpopulations[2].individuals;
+sampledIndividuals = sample(allIndividuals_pop, 100);
+sampledIndividuals.genomes.outputVCF(filePath="TAG_EUR.vcf");
+
+allIndividuals_pop = sim.subpopulations[3].individuals;
+sampledIndividuals = sample(allIndividuals_pop, 50);
+sampledIndividuals.genomes.outputVCF(filePath="TAG_eRHG.vcf");
+
+allIndividuals_pop = sim.subpopulations[4].individuals;
+sampledIndividuals = sample(allIndividuals_pop, 50);
+sampledIndividuals.genomes.outputVCF(filePath="TAG_eAGR.vcf");
+
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step27.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step27.output");
+}
+
+12202 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step28.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step28.output");
+}
+
+12232 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step29.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step29.output");
+}
+
+12262 late() {
+sim.outputMutations(sim.mutationsOfType(m1),filePath="TAG_m1.step30.output");
+sim.outputMutations(sim.mutationsOfType(m2),filePath="TAG_m2.step30.output");
+}
